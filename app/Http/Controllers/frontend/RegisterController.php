@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Mail;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+
+
 class RegisterController extends Controller {
     var $_folder_name = 'frontend/';
     private $_user_data = [];
