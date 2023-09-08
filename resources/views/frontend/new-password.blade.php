@@ -2,7 +2,7 @@
 <html lang="en">
 
 
-<meta http-equiv="content-type" content="text/html;charset=utf-8"/><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
 <head>
     <title>Mega Able bootstrap admin template by codedthemes </title>
 
@@ -114,7 +114,7 @@
 
             <div class="col-sm-12">
 
-                <form method="POST" action="{{url('/send-Otp-on-mail')}}" id="forgot_form" class="md-float-material form-material">
+                <form method="POST" action="{{url('/save-new-password')}}" id="otp_form" class="md-float-material form-material">
                     @csrf
                     <div class="text-center">
                         <img src="{{asset('assets/images/logo.png')}}" alt="logo.png">
@@ -123,15 +123,21 @@
                         <div class="card-block">
                             <div class="row m-b-20">
                                 <div class="col-md-12">
-                                    <h3 class="text-center">Forgot Password</h3>
+                                    <h3 class="text-center">New Password</h3>
                                 </div>
                             </div>
+                            <input type="hidden" name="user_id" class="form-control" id="user_id" placeholder="Enter OTP"  value="{{$user_id}}">
                             <div class="form-group form-primary">
-                                <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email">
-                                <span class="form-bar"></span>
-                                <label class="float-label">Your Email</label>
-                            </div>
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Password" maxlength="100">
 
+                                <span class="form-bar"></span>
+                                <label class="float-label">Your New Password</label>
+                            </div>
+                            <div class="form-group form-primary">
+                                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Re-enter Password" maxlength="100">
+                                <span class="form-bar"></span>
+                                <label class="float-label">Re-enter Password</label>
+                            </div>
                             <div class="row m-t-30">
                                 <div class="col-md-12">
                                     <button type="submit"
@@ -173,14 +179,16 @@
 <script>
 
     jQuery(function () {
-        $('#forgot_form').validate({
+        $('#otp_form').validate({
             ignore: '',
             rules: {
-                email: {
+                password:{
                     required: true,
-                    email: true,
-                    maxlength: 100,
                 },
+                confirm_password:{
+                    required: true,
+                    equalTo: '#password',
+                }
             },
             messages: {
                 confirm_password: {
@@ -193,9 +201,11 @@
                 element.parent().after(error);
             },
             highlight: function (element) {
-                if ($(element).attr('id') == 'contact_no1' || $(element).attr('id') == 'contact_no2') {
+                if ($(element).attr('id') == 'contact_no1' || $(element).attr('id') == 'contact_no2')
+                {
                     $(element).parent().parent().addClass("has-error");
-                } else {
+                } else
+                    {
                     $(element).parent().addClass("has-error");
                 }
             },
@@ -214,7 +224,8 @@
                     scrollTop: $(validator.errorList[0].element).offset().top - 150
                 }, "fast");
             },
-            submitHandler: function (form) {
+            submitHandler: function (form)
+            {
                 $('input[type="submit"]').attr("disabled", true);
                 $('.submit_btn').attr('disabled', 'disabled');
                 form.submit();
