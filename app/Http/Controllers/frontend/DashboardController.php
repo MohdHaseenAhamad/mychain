@@ -23,22 +23,24 @@ class DashboardController extends Controller
     public function activateUser()
     {
         $node_id = auth()->user()->id;
-        $parent_id = auth()->user()->sponser_id;
+        $parent_id = auth()->user()->parent_id;
         $user_name = auth()->user()->name;
         DB::beginTransaction();
         try{
-
             $query = "
                 INSERT INTO users_tree (ancestor,descendant,depth)
                 SELECT ancestor, {$node_id}, depth+1
                 FROM users_tree
                 WHERE descendant = {$parent_id}
-                UNION ALL SELECT {$node_id}, {$node_id}, 0";
+                UNION ALL SELECT {$parent_id}, {$node_id}, 0";
 
             //connect parent to user in tree
-            $tree = DB::statement($query);
+            $tree = DB::insert($query);
 
             DB::table('users')->where('id', $node_id)->increment('level');
+            if($parent_id != 0) {
+                DB::table('users')->where('id', $parent_id)->increment('direct_downlines');
+            }
         }catch (\Exception $e)
         {
 
