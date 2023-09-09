@@ -28,7 +28,7 @@ class RegisterController extends Controller {
         $request->validated();
         $mobile = $request->mobile_cid . "##" . $request->mobile_isd . "##" . $request->mobile;
         $user_obj = new User();
-        $user_obj->sponser_id = $request->sponser_id;
+        $user_obj->parent_id = $request->parent_id;
         $user_obj->name = $request->name;
         $user_obj->mobile = $mobile;
         $user_obj->email = $request->email;

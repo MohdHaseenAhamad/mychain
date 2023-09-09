@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\frontend\RegisterController;
 use App\Http\Controllers\frontend\AuthController;
+use App\Http\Controllers\frontend\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,9 +28,8 @@ use App\Http\Controllers\frontend\AuthController;
 Route::get('/', function () {
     return view('frontend/index');
 });
-Route::get('/dashboard', function () {
-    return view('frontend/index');
-})->name('dashboard');
+Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
+Route::get('/activate-user', [DashboardController::class,'activateUser'])->name('activate-user');
 Route::get('/register',[RegisterController::class,'index']);
 Route::get('/compose-email',[RegisterController::class,'composeEmail']);
 Route::post('/save-user',[RegisterController::class,'create']);

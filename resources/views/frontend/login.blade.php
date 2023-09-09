@@ -139,6 +139,7 @@
                             <div class="row m-t-25 text-left">
                                 <div class="col-12">
 
+
                                     <div class="forgot-phone text-right f-right">
                                         <a href="{{url('/forgot-password')}}" class="text-right f-w-600"> Forget Password</a>
                                     </div>
@@ -150,6 +151,21 @@
                                             class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">
                                         Submit
                                     </button>
+                                </div>
+                            </div>
+                            <div class="row m-t-30">
+                                <div class="col-md-12">
+                                    <div class="text-center ">
+                                        <a href="{{url('/forgot-password')}}" class="text-right f-w-600"> Create New Account</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-t-30">
+                                <div class="col-md-12">
+                                    <a href="{{url('/register')}}"
+                                            class="btn btn-primary btn-sm btn-block waves-effect waves-light text-center m-b-20">
+                                        Sign Up
+                                    </a>
                                 </div>
                             </div>
                         </div>

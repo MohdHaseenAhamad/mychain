@@ -126,7 +126,7 @@
                             </div>
 
                             <div class="form-group form-primary">
-                                <input type="text" name="sponser_id" id="sponser_id" class="form-control"
+                                <input type="text" name="parent_id" id="parent_id" class="form-control"
                                        value="<?=isset($_GET['reference']) ? $_GET['reference'] : ''?>" required="">
                                 <span class="form-bar"></span>
                                 <label class="float-label">Enter Sponser ID</label>
@@ -210,6 +210,9 @@
         $('#register_form').validate({
             ignore: '',
             rules: {
+                parent_id:{
+                    digits:true,
+                },
                 name: {
                     required: true,
                     minlength: 2,
