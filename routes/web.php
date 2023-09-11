@@ -30,6 +30,8 @@ Route::get('/', function () {
 });
 Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
 Route::get('/activate-user', [DashboardController::class,'activateUser'])->name('activate-user');
+Route::get('/dashboard/matrix', [DashboardController::class,'matrix']);
+Route::get('/dashboard/member-active', [DashboardController::class,'memberActive']);
 Route::get('/register',[RegisterController::class,'index']);
 Route::get('/compose-email',[RegisterController::class,'composeEmail']);
 Route::post('/save-user',[RegisterController::class,'create']);

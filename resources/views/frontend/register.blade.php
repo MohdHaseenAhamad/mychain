@@ -127,17 +127,17 @@
 
                             <div class="form-group form-primary">
                                 <input type="text" name="parent_id" id="parent_id" class="form-control"
-                                       value="<?=isset($_GET['reference']) ? $_GET['reference'] : ''?>" required="">
+                                       value="<?=isset($_GET['reference']) ? $_GET['reference'] : ''?>" >
                                 <span class="form-bar"></span>
                                 <label class="float-label">Enter Sponser ID</label>
                             </div>
                             <div class="form-group form-primary">
-                                <input type="text" name="name" id="name" class="form-control" required="">
+                                <input type="text" name="name" id="name" class="form-control" >
                                 <span class="form-bar"></span>
                                 <label class="float-label">Username</label>
                             </div>
                             <div class="form-group form-primary">
-                                <input type="email" name="email" id="email" class="form-control" required="">
+                                <input type="email" name="email" id="email" class="form-control" >
                                 <span class="form-bar"></span>
                                 <label class="float-label">Your Email Address</label>
                             </div>
