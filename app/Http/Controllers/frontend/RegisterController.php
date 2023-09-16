@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UserOtp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -64,6 +65,41 @@ class RegisterController extends Controller {
             'otp' => $otp,
             'expire_at' => $now->addMinutes(10)
         ]);
+    }
+    public function activateUser()
+    {
+        $node_id = auth()->user()->id;
+        $parent_id = auth()->user()->parent_id;
+        $user_name = auth()->user()->name;
+        $parent_id = !empty($parent_id) ? $parent_id:0;
+        DB::beginTransaction();
+        try {
+            $query = "
+                INSERT INTO users_tree (ancestor,descendant,depth)
+                SELECT ancestor, {$node_id}, depth+1
+                FROM users_tree
+                WHERE descendant = {$parent_id}
+                UNION ALL SELECT {$node_id}, {$node_id}, 0";
+
+            //connect parent to user in tree
+            $tree = DB::insert($query);
+
+            DB::table('users')->where('id', $node_id)->increment('level');
+            if($parent_id != 0)
+            {
+                DB::table('users')->where('id', $parent_id)->increment('direct_downlines');
+            }
+        }
+        catch (\Exception $e)
+        {
+            DB::rollback();
+//            return redirect()->back()->with('error', 'OTP Re-send successfully');
+        }
+        DB::commit();
+
+//        return redirect()->back()->with('success', $user_name. ' activation was successful!');
+//        return redirect()->session()->flash('success', $user_name. ' activation was successful!');
+
     }
 
     public function resendOTP($user_id) {
@@ -246,6 +282,7 @@ class RegisterController extends Controller {
         }
 
     }
+
 
 
 }

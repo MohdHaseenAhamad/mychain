@@ -26,9 +26,6 @@
             </div>
         </div>
     </div>
-<?php
-$i=$j=$k=$l=$m=$n=1;
-?>
 <!-- Page-header end -->
     <div class="pcoded-inner-content">
         <!-- Main-body start -->
@@ -51,20 +48,30 @@ $i=$j=$k=$l=$m=$n=1;
                                             <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
                                         </div>
                                         <div class="card-block">
-                                            <form method="POST" action="{{url('active')}}" class="form-material">
+                                            <form method="POST" action="{{url('/dashboard/verify')}}" class="form-material">
+                                                @csrf
+                                                {{--<div class="form-group row">--}}
+                                                    {{--<label class="col-sm-2 col-form-label">Amount</label>--}}
+                                                    {{--<div class="col-sm-10">--}}
+                                                        {{--<select name="select" class="form-control">--}}
+                                                            {{--<option value="">Select</option>--}}
+                                                            {{--<option value="10">Started Plan $10</option>--}}
+                                                            {{--<option value="50">Classic Plan $50</option>--}}
+                                                            {{--<option value="100">premium Plan $100</option>--}}
+                                                        {{--</select>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Amount</label>
                                                     <div class="col-sm-10">
-                                                        <select name="select" class="form-control">
-                                                            <option value="">Select</option>
-                                                            <option value="10">$10</option>
-                                                            <option value="50">$50</option>
-                                                            <option value="100">$100</option>
-                                                        </select>
+                                                        <input type="text" name="amount" class="form-control"
+                                                               placeholder="Enter Amount">
                                                     </div>
                                                 </div>
 
-                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Deposit</button>
+                                                <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                                    Deposit
+                                                </button>
                                             </form>
                                         </div>
                                     </div>

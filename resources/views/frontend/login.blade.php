@@ -127,12 +127,12 @@
                                 </div>
                             </div>
                             <div class="form-group form-primary">
-                                <input type="email" name="email" id="email" class="form-control" placeholder="OTP" >
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
                                 <span class="form-bar"></span>
                                 <label class="float-label">Your Email</label>
                             </div>
                             <div class="form-group form-primary">
-                                <input type="password" name="password" id="password" class="form-control" placeholder="OTP">
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Your Password">
                                 <span class="form-bar"></span>
                                 <label class="float-label">Your Password</label>
                             </div>
